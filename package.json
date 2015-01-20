@@ -1,0 +1,15 @@
+{
+  "name": "MarsRobot",
+  "version": "1.0.0",
+  "description": "A robot that you can command to walk around mars... a weird grid shaped mars",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Ben Stephenson",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^2.8.1",
+    "mocha": "^2.1.0"
+  }
+}
