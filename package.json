@@ -9,7 +9,6 @@
   "author": "Ben Stephenson",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^2.8.1",
     "chai": "^1.10.0",
     "mocha": "^2.1.0"
   }
