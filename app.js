@@ -1,47 +1,10 @@
 'use strict';
 
-var Grid = require('./lib/Grid'),
-    Robot = require('./lib/Robot'),
-    Mars = null,
-    Marvin = null;
+var Environment = require('./lib/Environment').Environment,
+    marvin = null,
+    mars = null,
+    handleInput = new Environment(marvin, mars, console.log);
 
-function handleInput(data) {
-  if (!Mars) {
-    var coords = data.match(/(\d)\s*(\d)/);
-    if (!coords) {
-      throw new Error('Unexpected initial pattern: ', data);
-    }
-    Mars = new Grid(parseInt(coords[1], 10), parseInt(coords[2], 10));
-    return Mars;
-  }
-
-  var robotSetupMatch = data.match(/(\d)\s*(\d)\s*(\w)/),
-      robotCommandMatch = data.match(/.+/);
-
-  if (robotSetupMatch) {
-    Marvin = new Robot(parseInt(robotSetupMatch[1], 10), parseInt(robotSetupMatch[2], 10), Mars, robotSetupMatch[3]);
-    Marvin.responseStream = {
-      send: console.log
-    };
-    return Marvin;
-  }
-
-  if (robotCommandMatch) {
-    if (!Marvin) {
-      throw new Error('Received command without active Robot');
-    }
-    data.split('').map(function (commandKey) {
-      Marvin.handleCommand(commandKey);
-    });
-    if (Marvin.active) {
-      return Marvin.terminate();
-    } else {
-      return false;
-    }
-  }
-
-  throw new Error('Unrecognisable Pattern');
-}
 
 process.stdin.setEncoding('utf8');
 
