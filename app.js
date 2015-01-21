@@ -3,7 +3,10 @@
 var Environment = require('./lib/Environment').Environment,
     marvin = null,
     mars = null,
-    handleInput = new Environment(marvin, mars, console.log);
+    sugaredConsole = function (output) {
+      console.log('Robot Response: ' + output);
+    },
+    handleInput = new Environment(marvin, mars, sugaredConsole);
 
 
 process.stdin.setEncoding('utf8');
