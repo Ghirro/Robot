@@ -32,7 +32,7 @@ The **first** command that you need to enter is the Grid Setup command. This des
 
 ### Robot Preparation Command
 
-The next command should be your robot preparation command. This comes in the format [x, y, orientation] where ***x*** and ***y*** are the robots position on the grid and orientation is one of N, S, E or W describing the direction the robot is pointing in.
+The next command should be your robot preparation command. This comes in the format [x, y, orientation] where ***x*** and ***y*** are the robots position on the grid and ***orientation*** is one of N, S, E or W describing the direction the robot is pointing in.
 
 Sample:
 
@@ -48,6 +48,11 @@ The final command is a string of characters that describe actions for your robot
 * L: Turn the robot 90 degrees to it's left
 * R: Turn the robot 90 degrees to it's right
 
+Sample:
+```
+RFRFRFRF
+```
+
 After your string the Robot will report back it's position and whether it fell off the grid. Remember that dead robots (one's that have previously fallen off the grid) will leave a scent and prevent your robot from killing itself from that position again.
 
 ## Modifying The Robot
@@ -57,9 +62,7 @@ After your string the Robot will report back it's position and whether it fell o
 To add a new command to your robot you can simply edit the command mappings:
 
 ```javascript
-this.commandMappings.push({
-  'H' : 'helloWorld'
-});
+this.commandMappings.H = 'helloWorld';
 this.helloWorld = function () {
   this.respond('Hello World');
 };
